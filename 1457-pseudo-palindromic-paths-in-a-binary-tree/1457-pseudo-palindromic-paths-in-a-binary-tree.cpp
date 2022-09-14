@@ -16,7 +16,7 @@ public:
             return 0;
         count ^= (1 << root->val);
         int result = pseudoPalindromicPaths(root->left, count) + pseudoPalindromicPaths(root->right, count);
-        if(!root->left && !root->right && !(count & (count - 1)))
+        if(root->left == root->right && !(count & (count - 1)))
             ++result;
         return result;
     }
