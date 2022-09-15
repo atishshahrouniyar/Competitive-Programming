@@ -7,7 +7,7 @@ vector<int> findOriginalArray(vector<int>& A) {
         vector<int> keys;
         for (auto it : c)
             keys.push_back(it.first);
-        sort(keys.begin(), keys.end(), [](int i, int j) {return abs(i) < abs(j);});
+        sort(keys.begin(), keys.end());
         vector<int> res;
         for (int x : keys) {
             if (c[x] > c[2 * x]) return {};
