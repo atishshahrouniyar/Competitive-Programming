@@ -1,19 +1,22 @@
 class Solution {
 public:
-vector<int> findOriginalArray(vector<int>& A) {
-        if (A.size() % 2) return {};
-        unordered_map<int, int> c;
-        for (int a : A) c[a]++;
+    vector<int> findOriginalArray(vector<int>& changed) {
+        if(changed.size() & 1)
+            return {};
+        map<int, int> freq;
+        for(int x : changed)
+            freq[x]++;
         vector<int> keys;
-        for (auto it : c)
-            keys.push_back(it.first);
+        for(auto& x : freq)
+            keys.push_back(x.first);
         sort(keys.begin(), keys.end());
-        vector<int> res;
-        for (int x : keys) {
-            if (c[x] > c[2 * x]) return {};
-            for (int i = 0; i < c[x]; ++i, c[2 * x]--)
-                res.push_back(x);
+        vector<int> answer;
+        for(int x : keys){
+            if(freq[x] > freq[2*x])
+                return {};
+            for(int i=0;i<freq[x];++i, freq[2*x]--)
+                answer.push_back(x);
         }
-        return res;
+        return answer;
     }
 };
